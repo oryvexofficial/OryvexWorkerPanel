@@ -1,2 +1,16 @@
-{ "name": "oryvex-deployer", "version": "1.0.5", "type": "module", "private": true,
-  "scripts": { "build": "node build.mjs", "test": "node --test", "deploy": "node deploy.mjs", "token-url": "node deploy.mjs --token-url" } }
+{
+  "name": "oryvex-deployer",
+  "version": "1.0.6",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node build-ui.mjs && node build.mjs",
+    "test": "node --test",
+    "deploy": "node deploy.mjs",
+    "token-url": "node deploy.mjs --token-url",
+    "build:ui": "node build-ui.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "4.3.3"
+  }
+}

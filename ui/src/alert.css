@@ -1,0 +1,117 @@
+/* =====================================================================
+   OxAlert · SweetAlert-style dialogs + toasts for Oryvex 1.0.6
+   Popup scales in / out, backdrop fades in / out, icon ring scales in,
+   toasts slide in / out. Flat colour only.
+   ===================================================================== */
+.oxa-backdrop {
+  position: fixed; inset: 0; z-index: 10060;
+  display: grid; place-items: center; padding: 20px;
+  background: var(--ox-scrim);
+  animation: ox-fade-in var(--ox-d-fade) var(--ox-e-out) both;
+}
+.oxa-backdrop.oxa-leaving { animation: ox-fade-out 0.18s var(--ox-e-in) both; pointer-events: none; }
+.oxa-popup {
+  position: relative; width: 100%; max-width: 420px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 32px 26px 22px;
+  border-radius: 20px;
+  background: var(--ox-surface);
+  border: 1px solid var(--ox-line);
+  box-shadow: var(--ox-pop-shadow);
+  color: var(--ox-ink);
+  font-family: var(--font-sans);
+  animation: ox-scale-in var(--ox-d-scale) var(--ox-e-out) both;
+}
+.oxa-leaving .oxa-popup { animation: ox-scale-out 0.18s var(--ox-e-in) both; }
+
+.oxa-icon {
+  --oxa-c: var(--ox-accent);
+  width: 68px; height: 68px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 0 18px;
+  color: var(--oxa-c);
+  border: 3px solid color-mix(in oklch, var(--oxa-c) 30%, transparent);
+  background: color-mix(in oklch, var(--oxa-c) 10%, transparent);
+  animation: ox-scale-in 0.3s var(--ox-e-out) 0.06s both;
+}
+.oxa-icon svg { width: 32px; height: 32px; animation: ox-fade-in 0.24s var(--ox-e-out) 0.16s both; }
+.oxa-icon--success { --oxa-c: var(--ox-ok); }
+.oxa-icon--error { --oxa-c: var(--ox-bad); }
+.oxa-icon--warning { --oxa-c: var(--ox-warn); }
+.oxa-icon--info { --oxa-c: var(--ox-info); }
+.oxa-icon--question { --oxa-c: var(--ox-accent); }
+
+.oxa-title { margin: 0 0 8px; font-size: 21px; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em; color: var(--ox-ink); }
+.oxa-text { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ox-ink-2); white-space: pre-line; word-break: break-word; }
+.oxa-text b, .oxa-text strong { color: var(--ox-ink); }
+.oxa-input {
+  width: 100%; margin-top: 16px; min-height: 44px; padding: 0 14px;
+  border-radius: var(--ox-r-ctl); border: 1px solid var(--ox-line-2);
+  background: var(--ox-bg); color: var(--ox-ink); font: 500 15px var(--font-sans);
+}
+.oxa-input:focus { outline: none; border-color: var(--ox-accent); box-shadow: 0 0 0 3px var(--ox-accent-soft); }
+.oxa-actions { display: flex; gap: 10px; width: 100%; margin-top: 24px; }
+.oxa-actions.oxa-reverse { flex-direction: row-reverse; }
+.oxa-btn {
+  flex: 1; min-height: 46px; padding: 0 18px; border: 0; border-radius: 12px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 15px/1 var(--font-sans); letter-spacing: -0.005em;
+}
+.oxa-confirm { background: var(--ox-accent); color: var(--ox-accent-ink); }
+.oxa-confirm.oxa-danger { background: var(--ox-bad); color: oklch(0.99 0.004 25); }
+.oxa-deny { background: color-mix(in oklch, var(--ox-bad) 14%, transparent); color: var(--ox-bad); }
+.oxa-cancel { background: var(--ox-surface-2); color: var(--ox-ink); box-shadow: inset 0 0 0 1px var(--ox-line); }
+@media (hover: hover) {
+  .oxa-confirm:hover { background: var(--ox-accent-hover); }
+  .oxa-confirm.oxa-danger:hover { background: color-mix(in oklch, var(--ox-bad) 88%, black); }
+  .oxa-cancel:hover { background: var(--ox-surface-3); }
+  .oxa-deny:hover { background: color-mix(in oklch, var(--ox-bad) 22%, transparent); }
+}
+.oxa-close {
+  position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 9px;
+  display: grid; place-items: center; cursor: pointer; background: transparent; color: var(--ox-ink-3);
+}
+.oxa-close:hover { background: var(--ox-surface-2); color: var(--ox-ink); }
+.oxa-close svg { width: 16px; height: 16px; }
+.oxa-timer { position: absolute; left: 20px; right: 20px; bottom: 0; height: 3px; border-radius: 3px; overflow: hidden; }
+.oxa-timer i { display: block; height: 100%; background: var(--ox-accent); opacity: 0.55; transform-origin: left; }
+
+/* ---------- toasts ---------- */
+.oxa-toasts {
+  position: fixed; z-index: 10070; top: max(16px, env(safe-area-inset-top)); right: 16px;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  width: min(380px, calc(100vw - 24px)); pointer-events: none;
+}
+.oxa-toast {
+  --oxa-c: var(--ox-ok);
+  position: relative; overflow: hidden; pointer-events: auto; cursor: pointer;
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 12px 14px 12px 12px;
+  border-radius: 14px; border: 1px solid var(--ox-line);
+  background: var(--ox-surface); color: var(--ox-ink);
+  box-shadow: var(--ox-pop-shadow);
+  font: 600 14px/1.4 var(--font-sans);
+  animation: ox-slide-in-x var(--ox-d-slide) var(--ox-e-out) both;
+}
+.oxa-toast.oxa-leaving { animation: ox-slide-out-x 0.2s var(--ox-e-in) both; }
+.oxa-toast-ic {
+  flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--oxa-c); background: color-mix(in oklch, var(--oxa-c) 14%, transparent);
+  border: 2px solid color-mix(in oklch, var(--oxa-c) 28%, transparent);
+}
+.oxa-toast-ic svg { width: 16px; height: 16px; }
+.oxa-toast-msg { flex: 1; min-width: 0; word-break: break-word; }
+.oxa-toast-bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--oxa-c); opacity: 0.5; transform-origin: left; }
+.oxa-toast--error { --oxa-c: var(--ox-bad); }
+.oxa-toast--warning { --oxa-c: var(--ox-warn); }
+.oxa-toast--info { --oxa-c: var(--ox-info); }
+.oxa-toast--question { --oxa-c: var(--ox-accent); }
+
+@media (max-width: 640px) {
+  .oxa-toasts { right: 50%; transform: translateX(50%); align-items: stretch; }
+  .oxa-toast { animation-name: ox-slide-in-y; }
+  .oxa-toast.oxa-leaving { animation-name: ox-slide-out-y; }
+  .oxa-backdrop { align-items: end; padding: 12px; }
+  .oxa-popup { max-width: none; border-radius: 22px; padding: 28px 20px 18px; animation-name: ox-slide-in; }
+  .oxa-leaving .oxa-popup { animation-name: ox-slide-out; }
+}

@@ -54,6 +54,16 @@ Needs Node 18+.
 ## Repository
 https://github.com/oryvexofficial/OryvexWorkerPanel · maintained by @themuvixo
 
+## What is new in 1.0.6
+- **Full redesign, "Patchbay":** flat surfaces, crisp 1px borders, one orchid accent, no gradients anywhere (logo included), in dark and light.
+- **Built with Tailwind CSS v4:** the Tailwind sources live in `ui/vendor/tailwindcss/`, the design layer in `ui/src/`, compiled CSS in `ui/dist/`. Run `npm i && npm run build` to rebuild panel, scanner and deployer.
+- **New cards:** stats tiles, user rows/cards, Telegram rows, region and country pickers all redrawn.
+- **New modals:** every modal fades its backdrop and scales its card in and out (bottom sheet that slides up on phones).
+- **SweetAlert-style dialogs and toasts (OxAlert):** confirmations show a ring icon, title and keys; toasts slide in with a timer bar. API: `OxAlert.fire()`, `OxAlert.toast()`, `OxAlert.confirm()` (also on `window.Swal`).
+- **Simpler animations:** only fade in/out, scale in/out, slide in/out and colour in/out. The 1.0.5 press engine, springs, pops, ping, bounce, shake and the circular theme wipe are gone.
+- **Scanner:** no more Tailwind CDN, CSS is compiled and embedded; new colours, toasts, flat logo.
+- **Deployer:** re-skinned to the new palette, flat logo, success dialog after deploy.
+
 ## What is new in 1.0.5
 - **New "Aurora" look:** teal-ink canvas with a soft glow, glass cards, bigger corners, one accent that matches the logo, in dark and light.
 - **Smooth everything:** every button, region row, mode card, provider, flag and country button now scales in when pressed, springs back out when released, and fades its colour in and out instead of snapping.
