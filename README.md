@@ -54,6 +54,14 @@ Needs Node 18+.
 ## Repository
 https://github.com/oryvexofficial/OryvexWorkerPanel · maintained by @themuvixo
 
+## What is new in 1.0.5
+- **New "Aurora" look:** teal-ink canvas with a soft glow, glass cards, bigger corners, one accent that matches the logo, in dark and light.
+- **Smooth everything:** every button, region row, mode card, provider, flag and country button now scales in when pressed, springs back out when released, and fades its colour in and out instead of snapping.
+- **Touch screens:** phones get the same press feedback as a mouse. Quick taps on buttons like *Add direct user (no proxy)* now colour in and fade out.
+- **Change panel region:** the chosen region gets a tick and a soft pop, the list scrolls to your current region, rows arrive with a short stagger, and on phones each region is a tidy two-line card.
+- **"Remove animations" phones:** colour fades stay (only the scaling is dropped), so buttons no longer snap.
+- **Fixes:** the header no longer pushes the menu button off 360 px screens; modal close buttons are true circles on phones; stats show two per row on small phones; switches glide.
+
 ## What is new in 1.0.4
 - **Footer fix:** the footer now sits right at the bottom of every page. No more empty band under it on the dashboard, login, setup, landing and status pages.
 - Sign-in, setup and landing pages: the footer moved out of the narrow card to a full-width footer at the bottom of the screen.
