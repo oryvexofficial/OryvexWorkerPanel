@@ -1,0 +1,2 @@
+VERSION=1.0.4
+<div class="text-center"><h3 class="font-black text-sm">Oryvex Worker Panel 1.0.4</h3><p class="text-xs mt-2 opacity-80">Footer now sits right at the bottom of every page, sign-in pages use the full-width footer, and every screenshot was retaken. Created by Muvixo.</p></div>

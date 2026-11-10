@@ -1,0 +1,7 @@
+name = "oryvex-deployer"
+main = "worker.js"
+compatibility_date = "2026-07-10"
+compatibility_flags = ["nodejs_compat", "allow_eval_during_startup"]
+
+[build]
+command = "node build.mjs"
